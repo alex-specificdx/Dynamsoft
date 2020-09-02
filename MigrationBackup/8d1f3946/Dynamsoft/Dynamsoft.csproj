@@ -33,6 +33,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dynamsoft.BarcodeGenerator, Version=8.1.1.1106, Culture=neutral, PublicKeyToken=298ad97013b423eb, processorArchitecture=MSIL">
+      <HintPath>packages\Dynamsoft.DotNet.TWAIN.8.1.3\lib\net40\Dynamsoft.BarcodeGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="Dynamsoft.Camera, Version=8.1.2.109, Culture=neutral, PublicKeyToken=298ad97013b423eb, processorArchitecture=MSIL">
+      <HintPath>packages\Dynamsoft.DotNet.TWAIN.8.1.3\lib\net40\Dynamsoft.Camera.dll</HintPath>
+    </Reference>
+    <Reference Include="Dynamsoft.Forms.Viewer, Version=8.1.2.109, Culture=neutral, PublicKeyToken=298ad97013b423eb, processorArchitecture=MSIL">
+      <HintPath>packages\Dynamsoft.DotNet.TWAIN.8.1.3\lib\net40\Dynamsoft.Forms.Viewer.dll</HintPath>
+    </Reference>
+    <Reference Include="Dynamsoft.ImageCore, Version=8.1.1.1106, Culture=neutral, PublicKeyToken=298ad97013b423eb, processorArchitecture=MSIL">
+      <HintPath>packages\Dynamsoft.DotNet.TWAIN.8.1.3\lib\net40\Dynamsoft.ImageCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Dynamsoft.OCR, Version=8.1.2.206, Culture=neutral, PublicKeyToken=298ad97013b423eb, processorArchitecture=MSIL">
+      <HintPath>packages\Dynamsoft.DotNet.TWAIN.8.1.3\lib\net40\Dynamsoft.OCR.dll</HintPath>
+    </Reference>
+    <Reference Include="Dynamsoft.PDF, Version=8.1.1.1106, Culture=neutral, PublicKeyToken=298ad97013b423eb, processorArchitecture=MSIL">
+      <HintPath>packages\Dynamsoft.DotNet.TWAIN.8.1.3\lib\net40\Dynamsoft.PDF.dll</HintPath>
+    </Reference>
+    <Reference Include="Dynamsoft.Twain, Version=8.1.2.109, Culture=neutral, PublicKeyToken=298ad97013b423eb, processorArchitecture=MSIL">
+      <HintPath>packages\Dynamsoft.DotNet.TWAIN.8.1.3\lib\net40\Dynamsoft.Twain.dll</HintPath>
+    </Reference>
+    <Reference Include="Dynamsoft.WPF.Viewer, Version=8.1.1.1106, Culture=neutral, PublicKeyToken=298ad97013b423eb, processorArchitecture=MSIL">
+      <HintPath>packages\Dynamsoft.DotNet.TWAIN.8.1.3\lib\net40\Dynamsoft.WPF.Viewer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +91,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -79,11 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Dynamsoft.DotNet.TWAIN">
-      <Version>8.1.3</Version>
-    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
