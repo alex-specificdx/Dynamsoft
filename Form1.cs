@@ -33,12 +33,12 @@ namespace Dynamsoft
 
         public void OnPostAllTransfers()
         {
-
+            twain.CloseSource();
         }
 
         public bool OnPostTransfer(Bitmap bit, string info)
         {
-            bit.Save("d:\\temp\\ScannedImage.jpg", ImageFormat.Jpeg);
+            bit.Save("d:\\temp\\ScannedImage.tiff", ImageFormat.Tiff);
             return true;
         }
 
@@ -59,33 +59,49 @@ namespace Dynamsoft
 
         public void OnTransferCancelled()
         {
-
+            var a = "";
         }
 
         public void OnTransferError()
         {
-
+            var a = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            twain.SelectSource();
-            twain.CloseSource();
-            twain.OpenSource();
+            // twain.SelectSource();
+            // twain.CloseSource();
 
-            twain.LogLevel = 1;
-            var setup = SetCapability(twain, TWCapability.ICAP_UNITS, (double)TWICapUNits.TWUN_PIXELS);
-            setup = setup && SetCapability(twain, TWCapability.ICAP_BITDEPTH, 48);
-            setup = setup && SetCapability(twain, TWCapability.ICAP_XRESOLUTION, 1000);
-
-            if (setup)
+            try
             {
-                twain.IfShowUI = false;
-                //twain.IfShowIndicator = false;
-                twain.AcquireImage(this as IAcquireCallback);
+                twain.OpenSource();
+                //twain.LogLevel = 1;
+
+                //var setup = SetCapability(twain, TWCapability.ICAP_UNITS, (double)TWICapUNits.TWUN_PIXELS);
+                //twain.ExtendedImageInfoQueryLevel = 2;
+                var setup = twain.SetFileXFERInfo("d:\\temp\\ScannedImage.tiff", TWICapFileFormat.TWFF_TIFF);
+                twain.TransferMode = TWICapSetupXFer.TWSX_MEMORY;
+                twain.PixelType = TWICapPixelType.TWPT_RGB;
+                twain.BitDepth = 48;
+                twain.Unit = TWICapUNits.TWUN_PIXELS;
+                //setup = SetCapability(twain, TWCapability.ICAP_BITDEPTH, 48);
+                twain.Resolution = 100;
+                //GetCapability(twain, TWCapability.ICAP_XRESOLUTION);
+
+                if (true)
+                {
+                    twain.IfShowUI = false;
+                    //twain.IfDuplexEnabled = false;
+                    //twain.IfDisableSourceAfterAcquire = true;
+                    //twain.IfShowIndicator = false;
+                    twain.AcquireImage(this as IAcquireCallback);
+                }
             }
-            
-            twain.CloseSource();
+            finally
+            {
+                twain.CloseSource();
+                twain.CloseSourceManager();
+            }
         }
         //twain.Capability = TWAIN.Enums.TWCapability.ICAP_XRESOLUTION;
         //var didWeGetCap = twain.CapGet();
@@ -185,6 +201,21 @@ namespace Dynamsoft
                         break;
                 }
                 Debug.WriteLine("");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                twain.SelectSourceByIndex(0);
+                twain.OpenSource();
+                var b = sender as Button;
+                GetCapability(twain, TWCapability.ICAP_BITDEPTH);
+            }
+            finally
+            {
+                twain.CloseSource();
             }
         }
     }
